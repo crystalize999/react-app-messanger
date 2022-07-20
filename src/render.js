@@ -2,11 +2,21 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import {addPost} from './redux/state';
-import state from "./redux/state";
+import {addPost, updateNewPostText, updateNewMessageText, addMessage} from './redux/state';
 
-export let rerenderEntireTree = (state) => {
-    ReactDOM.render(
-        <App state={state} addPost={addPost}/>,
-        document.getElementById('root'));
-}
+
+
+const root = ReactDOM.createRoot(document.getElementById('root')); 
+export let rerenderEntireTree = (state) =>{
+ 
+    root.render(
+        <React.StrictMode>
+            <App state={state}
+                 addPost={addPost}
+                 updateNewPostText={updateNewPostText}
+                 addMessage={addMessage}
+                 updateNewMessageText={updateNewMessageText} />
+        </React.StrictMode>
+    );}
+
+
