@@ -28,11 +28,13 @@ let state = {
             {id: 5, name: 'Oleg'},
             {id: 6, name: 'Anna'},
         ],
-        newMessageText:'Your Message'
+        newMessageText:'Your Message',
+        newNameText:'Your Name'
     },
     sidebar: {}
 }
 
+//добавление постов
 
 export let addPost = () => {
     let newPost = {
@@ -45,23 +47,37 @@ export let addPost = () => {
     rerenderEntireTree(state);
 }
 
+//  отслеживание текста
+
 export let updateNewPostText = (newText) => {
     state.profilePage.newPostText = newText;
     rerenderEntireTree(state);
 };
 
-export let addMessage = () => {
-    let newMessage = {
-         id: 2,
-         message: state.dialogsPage.newMessageText 
-        };
-        state.dialogsPage.dialogs.push(newMessage)
-        state.dialogsPage.newMessageText = '';
-        rerenderEntireTree(state)
-}
+// добавление диаолга и сообщения
 
-export let updateNewMessageText = (newMessage) => {
+export let AddMessageAndDialog = () => {
+    let newDialog = {
+         id: 4,
+         name: 'Anna'
+        };
+        let newMessage = {
+            id: 3,
+            message: state.dialogsPage.newMessageText
+        }
+    
+        state.dialogsPage.dialogs.push(newDialog)
+        state.dialogsPage.newMessageText = '';
+        state.dialogsPage.messages.push(newMessage)
+        state.dialogsPage.newNameText = '';
+        rerenderEntireTree(state);
+}
+// function name by yaroslavsf
+//  отслеживание текста
+
+export let updateNewMessageText = (newMessage, newNameText) => {
     state.dialogsPage.newMessageText = newMessage;
+    state.dialogsPage.newNameText = newNameText;
     rerenderEntireTree(state)
 }
 
